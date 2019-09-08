@@ -1,0 +1,105 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MaxSize 10
+typedef struct Stu{
+    int socer[MaxSize];
+    int number;
+}student;
+
+student IniStu();
+void InsertStu(student*,int);
+void DeletStuNum(student*,int);
+void DeletStusoc(student*,int);
+void ChangeStuSoc(student*,int,int);
+void DeletStuNum(student*,int);
+void DisStu(student*);
+student ComStu(student*,student*);
+
+int main()
+{
+    student test;
+    test=IniStu();
+    DisStu(&test);
+    system("Pause");
+    return 0;
+}
+
+student IniStu()
+{
+    student temp;
+    int soc;
+    int EndNum;
+    temp.number=-1;
+    printf("Please enter a number you want to end the Input.\n");
+    scanf("%d",&EndNum);
+    printf("Ok,now you point %d as your end number!\n",EndNum);
+    scanf("%d",&soc);
+    while (soc!=EndNum)
+    {
+        if(temp.number==9)
+        {
+            printf("Maxsize");
+            break;
+        }
+        temp.socer[++temp.number]=soc;
+        scanf("%d",&soc);
+    }
+    return temp;
+}
+void InsertStu(student* Ori,int socer)
+{
+    if(Ori->number==9)
+    {
+        printf("MaxSize !!!Input error!!!\n");
+        return ;
+    }
+    Ori->socer[++Ori->number]=socer;
+    printf("Input success!\n");
+    return ;
+}
+
+void DeletStuNum(student *Ori,int num)
+{
+    int StuNum;
+    if(num>Ori->number||num<0)
+    {
+        printf("error number!\n");
+    }
+    StuNum=Ori->number;
+    while(num!=StuNum)
+    {
+        Ori->socer[num]=Ori->socer[num+1];
+        num++;
+    }
+    Ori->number--;
+    printf("Delet Success!\n");
+}
+void ChangeStuSoc(student*Ori,int num,int socer)
+{
+    if(num>Ori->number||num<0)
+    {
+        printf("Error num!\n");
+    }
+    Ori->socer[num]=socer;
+    printf("Change Success!\n");
+}
+void DisStu(student*Dis)
+{
+    int DisNum;
+    DisNum=Dis->number;
+    if(DisNum<0)
+    {
+        printf("Void Linklist!\n");
+        return ;
+    }
+    while(DisNum!=-1)
+    {
+        printf("Student Num: %d ,Student Soc: %d\n",DisNum,Dis->socer[DisNum]);
+        DisNum--;
+    }
+    printf("DisOver!\n");
+}
+student ComStu(student*First,student*Second)
+{
+    ;
+}
